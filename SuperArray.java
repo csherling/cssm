@@ -130,7 +130,7 @@ public class SuperArray {
     //shifts elements left to fill in newly-empted slot
     public void remove( int index ) {
     	for (int i = index + 1; i < this._size; i++) {
-    		this._data[i] = this._data[i-1];
+    		this._data[i-1] = this._data[i];
     	}
     	this._size--;
     }
@@ -150,7 +150,7 @@ public class SuperArray {
 	System.out.println(curtis);
 
 	for( int i = 0; i < curtis._data.length; i++ ) {
-	    curtis.add(i,i*2);
+	    curtis.add(i);
 
 	}
 
