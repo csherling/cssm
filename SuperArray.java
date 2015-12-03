@@ -12,7 +12,12 @@
  *  insert item
  *  remove item (while maintaining "left-justification")
  *****************************/
-
+/*
+Committed -  Christopher Sherling and Sachal Malick
+APCS1 pd5
+HW40 -- Array of Grade 316
+2015-12-02 
+ */
 public class SuperArray {
  
     //~~~~~INSTANCE VARS~~~~~
@@ -120,16 +125,23 @@ public class SuperArray {
 	}
     }
 
-    /*
+    // a, b, c, d, f
     //removes the item at index
     //shifts elements left to fill in newly-empted slot
-    public void remove( int index ) { }
+    public void remove( int index ) {
+    	for (int i = index + 1; i < this._size; i++) {
+    		this._data[i] = this._data[i-1];
+    	}
+    	this._size--;
+    }
 
 
     //return number of meaningful items in _data
-    public int size() { }
+    public int size() { 
+    	
+    	return this._size;
+    }
 
-    */
     //main method for testing
     public static void main( String[] args ) 
     {
@@ -138,8 +150,8 @@ public class SuperArray {
 	System.out.println(curtis);
 
 	for( int i = 0; i < curtis._data.length; i++ ) {
-	    curtis.set(i,i*2);
-	    curtis._size++; //necessary bc no add() method yet
+	    curtis.add(i,i*2);
+
 	}
 
 	System.out.println("Printing populated SuperArray curtis...");
