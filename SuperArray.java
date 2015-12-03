@@ -68,24 +68,59 @@ public class SuperArray {
 		
     //mutator -- set value at index to newVal, 
     //           return old value at index
-    public int set( int index, int newVal ) 
-    { 
- 	int temp = _data[index];
-	_data[index] = newVal;
-	return temp;
+    public int set( int index, int newVal ) { 
+	int temp = _data[index];
+	if(index <= _lastPos){
+	    _data[index] = newVal;
+	    return temp;
+	}
+	else{
+	    return temp;
+	}
     }
 
 
     // ~~~~~~~~~~~~~~ PHASE II ~~~~~~~~~~~~~~
     //adds an item after the last item
-    public void add( int newVal ) { }
+    public void add( int newVal ) { 
+	if(_size == _data.length){
+	    expand();
+	    _data[_lastPos + 1] = newVal;
+	    _lastPos++;
+	    _size++;
+	}
+	else{
+	    _data[_size] = newVal;
+	    _lastPos++;
+	    _size++;
+	}
 
+    }
 
     //inserts an item at index
     //shifts existing elements to the right
-    public void add( int index, int newVal ) { }
+    public void add( int index, int newVal ) { 
+	if(index > _lastPos){//The if of chris's stupidity ~Chris. Checks if the insertion index is after lastpos. If it is, it shouldn't work
+	    if(_size == _data.length){
+		expand();
+		for(int i = _lastPos; i > index; i--){
+		    _data[i + 1] = _data[i];
+		    _lastPos++;
+		    _size++;
+		}
+	    }
+	    else{
+		for(int i = _lastPos; i > index; i--){
+		    _data[i + 1] = _data[i];
+		    _lastPos++;
+		    _size++;
 
+		}
+	    }
+	}
+    }
 
+    /*
     //removes the item at index
     //shifts elements left to fill in newly-empted slot
     public void remove( int index ) { }
@@ -94,7 +129,7 @@ public class SuperArray {
     //return number of meaningful items in _data
     public int size() { }
 
-
+    */
     //main method for testing
     public static void main( String[] args ) 
     {
