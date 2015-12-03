@@ -108,21 +108,13 @@ public class SuperArray {
 	if(index <= _size){//The if of chris's stupidity ~Chris. Checks if the insertion index is after lastpos. If it is, it shouldn't work
 	    if(_size == _data.length){
 		expand();
-		for(int i = _lastPos; i > index; i--){
-		    _data[i + 1] = _data[i];
-		    _lastPos++;
-		    _size++;
-		}
-		_data[index] = newVal;
 	    }
-	    else{
-		for(int i = _lastPos; i > index; i--){
-		    _data[i + 1] = _data[i];
-		    _lastPos++;
-		    _size++;
-		}
-		_data[index] = newVal;
+	    for(int i = _lastPos; i >= index; i--){
+		_data[i + 1] = _data[i];
 	    }
+	    _lastPos++;
+	    _size++;
+	    _data[index] = newVal;
 	}
     }
 
