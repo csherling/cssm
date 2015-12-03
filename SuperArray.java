@@ -90,7 +90,7 @@ public class SuperArray {
     public void add( int newVal ) { 
 	if(_size == _data.length){
 	    expand();
-	    _data[_lastPos + 1] = newVal;
+	    _data[_size] = newVal;
 	    _lastPos++;
 	    _size++;
 	}
@@ -105,7 +105,7 @@ public class SuperArray {
     //inserts an item at index
     //shifts existing elements to the right
     public void add( int index, int newVal ) { 
-	if(index > _lastPos){//The if of chris's stupidity ~Chris. Checks if the insertion index is after lastpos. If it is, it shouldn't work
+	if(index <= _size){//The if of chris's stupidity ~Chris. Checks if the insertion index is after lastpos. If it is, it shouldn't work
 	    if(_size == _data.length){
 		expand();
 		for(int i = _lastPos; i > index; i--){
@@ -113,14 +113,15 @@ public class SuperArray {
 		    _lastPos++;
 		    _size++;
 		}
+		_data[index] = newVal;
 	    }
 	    else{
 		for(int i = _lastPos; i > index; i--){
 		    _data[i + 1] = _data[i];
 		    _lastPos++;
 		    _size++;
-
 		}
+		_data[index] = newVal;
 	    }
 	}
     }
@@ -132,6 +133,7 @@ public class SuperArray {
     	for (int i = index + 1; i < this._size; i++) {
     		this._data[i-1] = this._data[i];
     	}
+	this._lastPos--;
     	this._size--;
     }
 
@@ -150,7 +152,7 @@ public class SuperArray {
 	System.out.println(curtis);
 
 	for( int i = 0; i < curtis._data.length; i++ ) {
-	    curtis.add(i);
+	    curtis.add(i*2);
 
 	}
 
@@ -167,7 +169,7 @@ public class SuperArray {
 	curtis.expand();
 	System.out.println(curtis);
 
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	SuperArray mayfield = new SuperArray();
 	System.out.println("Printing empty SuperArray mayfield...");
 	System.out.println(mayfield);
@@ -197,6 +199,7 @@ public class SuperArray {
 	  mayfield.add(1,77);
 	  System.out.println("Printing SuperArray mayfield post-insert...");
 	  System.out.println(mayfield);
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	//*****INSERT ANY ADDITIONAL TEST CALLS HERE*****
 
